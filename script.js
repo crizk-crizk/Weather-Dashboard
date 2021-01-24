@@ -17,8 +17,22 @@ $(document).ready(function () {
       displayWeather(response);
       fetchUVindex(response.coord.lat, response.coord.lon);
     });
+
+    //AJAX request for 5-day forecast
+    $.ajax({
+      url: `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=05c2a7d4eefaaf927737607c9fd27a6c`,
+      method: "GET",
+      crossDomain: true,
+    }).then(function (response) {
+      console.log(response.list);
+      var noonWeather = response.list.filter(function(item){
+        return item.dt_txt.includes("12:00:00")
+      });
+      console.log(noonWeather);
+    });
   });
 
+    //AJAX request for UV index
   function fetchUVindex(lat, lon) {
     $.ajax({
       url: `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=05c2a7d4eefaaf927737607c9fd27a6c`,
@@ -28,11 +42,9 @@ $(document).ready(function () {
       console.log(response);
       displayUVindex();
     });
-  };
+  }
 
-  function displayUVindex (){
-
-  };
+  function displayUVindex() {}
 
   //access local storage to keeps that have been searched
   //store city function
