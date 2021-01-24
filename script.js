@@ -43,10 +43,10 @@ $(document).ready(function () {
       console.log(response);
       callback(response.value);
     });
-  };
+  }
 
   function displayUVindex(response) {
-      console.log("UVI",response);
+    console.log("UVI", response);
   }
 
   //access local storage to keeps that have been searched
@@ -57,9 +57,18 @@ $(document).ready(function () {
     if (!storedCities.includes(city)) {
       storedCities.push(city);
       localStorage.setItem("storeCity", JSON.stringify(storedCities));
+      var newCity = $(`<div class="cityChoice">${city}</div>`);
+      //makes city clickable
+      newCity.on("click", cityClicked);
+      $("#searchedCities").append(newCity);
     }
   }
 
+//responds to the click on the city in the side bar
+  function cityClicked() {
+    $(".inputCity").val($(this).text());
+    $("#searchBtn").trigger("click");
+  }
   //when is data stored? user types in input box & clicks search btn.
   //set a max for searched cities stored (10 would be good)
   //store array using JSON stringify
@@ -75,12 +84,15 @@ $(document).ready(function () {
   function displayCities() {
     var citiesInStorage = getCities();
     var citiesList = citiesInStorage.map(function (city) {
-      return `<li>${city}</li>`;
+        var div = $(`<div class="cityChoice">${city}</div>`);
+        div.on('click', cityClicked);
+        return div;
     });
     //console.log(citiesList)
     $("#searchedCities").html(citiesList);
     return citiesInStorage;
   }
+
 
   //**Display current weather info etc.
   function displayWeather(response) {
