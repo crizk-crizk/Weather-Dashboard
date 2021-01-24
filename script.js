@@ -15,7 +15,7 @@ $(document).ready(function () {
       console.log(response);
       storeCity(city);
       displayWeather(response);
-      fetchUVindex(response.coord.lat, response.coord.lon);
+      fetchUVindex(response.coord.lat, response.coord.lon, displayUVindex);
     });
 
     //AJAX request for 5-day forecast
@@ -25,26 +25,29 @@ $(document).ready(function () {
       crossDomain: true,
     }).then(function (response) {
       console.log(response.list);
-      var noonWeather = response.list.filter(function(item){
-        return item.dt_txt.includes("12:00:00")
+      //filer returns only items that meet the condition (dt_txt includes 12:00:00, in this case)
+      var noonWeather = response.list.filter(function (item) {
+        return item.dt_txt.includes("12:00:00");
       });
       console.log(noonWeather);
     });
   });
 
-    //AJAX request for UV index
-  function fetchUVindex(lat, lon) {
+  //AJAX request for UV index
+  function fetchUVindex(lat, lon, callback) {
     $.ajax({
       url: `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=05c2a7d4eefaaf927737607c9fd27a6c`,
       method: "GET",
       crossDomain: true,
     }).then(function (response) {
       console.log(response);
-      displayUVindex();
+      callback(response.value);
     });
-  }
+  };
 
-  function displayUVindex() {}
+  function displayUVindex(response) {
+      console.log("UVI",response);
+  }
 
   //access local storage to keeps that have been searched
   //store city function
@@ -63,6 +66,7 @@ $(document).ready(function () {
 
   function getCities() {
     var storedCities = localStorage.getItem("storeCity");
+
     //this will give back cities array
     return JSON.parse(storedCities) || [];
   }
@@ -75,15 +79,21 @@ $(document).ready(function () {
     });
     //console.log(citiesList)
     $("#searchedCities").html(citiesList);
+    return citiesInStorage;
   }
 
   //**Display current weather info etc.
   function displayWeather(response) {
-    console.log(response);
+    console.log("weather", response);
   }
 
   //**Display 5-day forecast
 
-  displayCities();
+  //redesplay last city accessed
+  var cities = displayCities();
+  if (cities.length > 0) {
+    $(".inputCity").val(cities[cities.length - 1]);
+    $("#searchBtn").trigger("click");
+  }
 });
 // 3 helpful methods: 1.map 2.filter 3.reduce. to manipulate arrays.
