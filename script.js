@@ -1,9 +1,10 @@
 $(document).ready(function () {
   //onclick event for the search button
   $("#searchBtn").on("click", function () {
-    //button getting value from input box
+    //setting value from input box as a variable so 'city' can be used throughout this function
     var city = $(".inputCity").val();
-    //ajax call
+    
+    //ajax call Current temperature
     $.ajax({
       url:
         "http://api.openweathermap.org/data/2.5/weather?q=" +
@@ -13,9 +14,12 @@ $(document).ready(function () {
       crossDomain: true,
     }).then(function (response) {
       console.log(response);
+      // calling the function that saves cities in storage & displays cities on HTML. (below)
       storeCity(city);
+
       displayWeather(response);
-      fetchUVindex(response.coord.lat, response.coord.lon, displayUVindex);
+
+      fetchAndDisplayUVindex(response.coord.lat, response.coord.lon);
     });
 
     //AJAX request for 5-day forecast
@@ -26,6 +30,7 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response.list);
       //filer returns only items that meet the condition (dt_txt includes 12:00:00, in this case)
+      //filter method (true or false).
       var noonWeather = response.list.filter(function (item) {
         return item.dt_txt.includes("12:00:00");
       });
@@ -33,21 +38,19 @@ $(document).ready(function () {
     });
   });
 
-  //AJAX request for UV index
-  function fetchUVindex(lat, lon, callback) {
+  //AJAX request for UV index (callback is a buzz word it's a variable name of a parameter )
+  function fetchAndDisplayUVindex(lat, lon) {
     $.ajax({
       url: `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=05c2a7d4eefaaf927737607c9fd27a6c`,
       method: "GET",
       crossDomain: true,
     }).then(function (response) {
       console.log(response);
-      callback(response.value);
+      //display UV index
+      console.log("UVI", response.value);
     });
   }
 
-  function displayUVindex(response) {
-    console.log("UVI", response);
-  }
 
   //access local storage to keeps that have been searched
   //store city function
@@ -62,7 +65,7 @@ $(document).ready(function () {
       newCity.on("click", cityClicked);
       $("#searchedCities").append(newCity);
     }
-  }
+  };
 
 //responds to the click on the city in the side bar
   function cityClicked() {
