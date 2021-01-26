@@ -63,8 +63,9 @@ $(document).ready(function () {
       const div = $('<div class="oneDayForecast"/>');
       div.append("<h2>Date</h2>");
       div.append("<div>Icons</div>");
-      div.append("<div>Temp</div>");
-      div.append("<div>Humidity</div>");
+      div.append(`<div>Temp: ${day.main.temp}</div>`);
+      div.append(`<div>Humidity: ${day.main.humidity}</div>`);
+      forecast.append(div);
     });
   }
 
