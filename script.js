@@ -3,7 +3,7 @@ $(document).ready(function () {
   $("#searchBtn").on("click", function () {
     //setting value from input box as a variable so 'city' can be used throughout this function
     var city = $(".inputCity").val();
-    
+
     //ajax call Current temperature
     $.ajax({
       url:
@@ -13,7 +13,7 @@ $(document).ready(function () {
       method: "GET",
       crossDomain: true,
     }).then(function (response) {
-      console.log(response);
+      // console.log(response);
       // calling the function that saves cities in storage & displays cities on HTML. (below)
       storeCity(city);
 
@@ -28,13 +28,14 @@ $(document).ready(function () {
       method: "GET",
       crossDomain: true,
     }).then(function (response) {
-      console.log(response.list);
+      // console.log(response.list);
       //filer returns only items that meet the condition (dt_txt includes 12:00:00, in this case)
       //filter method (true or false).
       var noonWeather = response.list.filter(function (item) {
         return item.dt_txt.includes("12:00:00");
       });
-      console.log(noonWeather);
+      // console.log(noonWeather);
+      display5day(noonWeather);
     });
   });
 
@@ -45,12 +46,61 @@ $(document).ready(function () {
       method: "GET",
       crossDomain: true,
     }).then(function (response) {
-      console.log(response);
+      //console.log(response);
+      //
+      displayUVindex(response.value);
       //display UV index
-      console.log("UVI", response.value);
+      //console.log("UVI", response.value);
     });
   }
 
+  //**Display five day weather
+  function display5day(noonWeather) {
+    console.log("5 day", noonWeather);
+    const forecast = $("forecast");
+    forecast.empty();
+    noonWeather.forEach((day) => {
+      const div = $('<div class="oneDayForecast"/>');
+      div.append("<h2>Date</h2>");
+      div.append("<div>Icons</div>");
+      div.append("<div>Temp</div>");
+      div.append("<div>Humidity</div>");
+    });
+  }
+
+  //**Display uv index inside the weather info etc.
+  function displayUVindex(uvIndex) {
+    $("#uvi").text(uvIndex);
+    const uviColors = [
+      "green",
+      "green",
+      "green",
+      "green",
+      "orange",
+      "orange",
+      "orange",
+      "orange",
+      "red",
+      "red",
+      "red",
+      "red",
+      "violet",
+    ];
+    const colorIndex = Math.round(uvIndex);
+    $("#uvi").css("background-color", uviColors[colorIndex]);
+    //console.log("uv index", uvIndex);
+  }
+
+  //**Display current weather info etc.
+  function displayWeather({ main, wind, name }) {
+    // console.log("weather", response);
+    $("#temp").text(main.temp);
+    $("#humidity").text(main.humidity);
+    $("#wind").text(wind.speed);
+    $("#cityAndDate").text(
+      `${name} (${moment().format("dddd, MMMM, Do, YYYY")})`
+    );
+  }
 
   //access local storage to keeps that have been searched
   //store city function
@@ -65,9 +115,9 @@ $(document).ready(function () {
       newCity.on("click", cityClicked);
       $("#searchedCities").append(newCity);
     }
-  };
+  }
 
-//responds to the click on the city in the side bar
+  //responds to the click on the city in the side bar
   function cityClicked() {
     $(".inputCity").val($(this).text());
     $("#searchBtn").trigger("click");
@@ -87,22 +137,14 @@ $(document).ready(function () {
   function displayCities() {
     var citiesInStorage = getCities();
     var citiesList = citiesInStorage.map(function (city) {
-        var div = $(`<div class="cityChoice">${city}</div>`);
-        div.on('click', cityClicked);
-        return div;
+      var div = $(`<div class="cityChoice">${city}</div>`);
+      div.on("click", cityClicked);
+      return div;
     });
     //console.log(citiesList)
     $("#searchedCities").html(citiesList);
     return citiesInStorage;
   }
-
-
-  //**Display current weather info etc.
-  function displayWeather(response) {
-    console.log("weather", response);
-  }
-
-  //**Display 5-day forecast
 
   //redesplay last city accessed
   var cities = displayCities();
@@ -111,4 +153,7 @@ $(document).ready(function () {
     $("#searchBtn").trigger("click");
   }
 });
-// 3 helpful methods: 1.map 2.filter 3.reduce. to manipulate arrays.
+// // 3 helpful methods: 1.map 2.filter 3.reduce. to manipulate arrays.
+// http://api.openweathermap.org/data/2.5/weather?q=Seattle&units=imperial&appid=05c2a7d4eefaaf927737607c9fd27a6c
+
+// http://api.openweathermap.org/data/2.5/forecast?q=Miami&units=imperial&appid=05c2a7d4eefaaf927737607c9fd27a6c

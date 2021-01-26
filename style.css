@@ -1,0 +1,64 @@
+body {
+    background: rgb(222, 218, 218);
+}
+content {
+    display: flex;
+
+}
+
+sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+forecast {
+    display: flex;
+    flex-direction: row;
+}
+
+#searchedCities {
+    padding: 10px;
+}
+
+#searchBtn {
+margin-top: 5px;
+padding: 2px;
+}
+
+.cityChoice {
+    text-align: center;
+    background-color: rgb(245, 241, 241);
+    border: 2px solid black;
+    margin-top: 2px;
+}
+
+.cityChoice:hover {
+    color: white;
+    background: rgb(10, 133, 10);
+}
+
+vertical {
+    width: 2px;
+    background-color: black;
+    margin: 0px 5px 0px 5px;
+    height: 100%;
+}
+
+#uvi {
+    font-weight: bold;
+    padding: 2px;
+    color: white;
+}
+
+current {
+    background-color: white;
+    border: 1px solid lightslategray;
+    padding: 10px;
+}
+

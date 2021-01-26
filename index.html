@@ -4,15 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   </head>
   <body>
-    <div>Type a City</div>
-    <input class="inputCity" type="text" />
-    <button id="searchBtn">Search</button>
+    <content>
+      <sidebar>
+        <div>Type a City</div>
+        <input class="inputCity" type="text" />
+        <button id="searchBtn">Search</button>
+        <div id="searchedCities"></div>
+      </sidebar>
 
-    <div id="searchedCities"></div>
+      <vertical></vertical>
 
+      <!-- Current Weather -->
+      <main>
+        <current>
+          <h2 id="cityAndDate"></h2>
+          <div>Temperature: <span id="temp"></span></div>
+          <div>Humidity: <span id="humidity"></span></div>
+          <div>Wind Speed: <span id="wind"></span></div>
+          <div>UV Index: <span id="uvi"></span></div>
+        </current>
+
+      <!-- five day forecast -->
+        <forecast>
+          
+        </forecast>
+
+      </main>
+    </content>
     <script src="script.js"></script>
   </body>
 </html>
