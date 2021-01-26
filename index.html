@@ -9,33 +9,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   </head>
   <body>
-    <content>
-      <sidebar>
+    <div class="content">
+      <div class="sidebar">
         <div>Type a City</div>
         <input class="inputCity" type="text" />
         <button id="searchBtn">Search</button>
         <div id="searchedCities"></div>
-      </sidebar>
+      </div>
 
-      <vertical></vertical>
+      <div class="vertical"></div>
 
       <!-- Current Weather -->
-      <main>
-        <current>
+      <div class="main">
+        <div class="current">
           <h2 id="cityAndDate"></h2>
+          <img id="weatherIcon" src="" alt="Weather Icon">
           <div>Temperature: <span id="temp"></span></div>
           <div>Humidity: <span id="humidity"></span></div>
           <div>Wind Speed: <span id="wind"></span></div>
           <div>UV Index: <span id="uvi"></span></div>
-        </current>
+        </div>
 
       <!-- five day forecast -->
-        <forecast>
+        <div class="forecast">
           
-        </forecast>
+        </div>
 
-      </main>
-    </content>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

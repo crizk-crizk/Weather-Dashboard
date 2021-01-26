@@ -28,7 +28,7 @@ $(document).ready(function () {
       method: "GET",
       crossDomain: true,
     }).then(function (response) {
-      // console.log(response.list);
+      console.log(response.list);
       //filer returns only items that meet the condition (dt_txt includes 12:00:00, in this case)
       //filter method (true or false).
       var noonWeather = response.list.filter(function (item) {
@@ -57,12 +57,14 @@ $(document).ready(function () {
   //**Display five day weather
   function display5day(noonWeather) {
     console.log("5 day", noonWeather);
-    const forecast = $("forecast");
+    const forecast = $(".forecast");
     forecast.empty();
     noonWeather.forEach((day) => {
       const div = $('<div class="oneDayForecast"/>');
-      div.append("<h2>Date</h2>");
-      div.append("<div>Icons</div>");
+      const iconUrl = `http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
+
+      div.append(`<h2>${new Date(day.dt_txt).toLocaleDateString()}</h2>`);
+      div.append(`<img src="${iconUrl}">`);
       div.append(`<div>Temp: ${day.main.temp}</div>`);
       div.append(`<div>Humidity: ${day.main.humidity}</div>`);
       forecast.append(div);
@@ -93,14 +95,17 @@ $(document).ready(function () {
   }
 
   //**Display current weather info etc.
-  function displayWeather({ main, wind, name }) {
+  function displayWeather({ main, wind, name, weather }) {
     // console.log("weather", response);
     $("#temp").text(main.temp);
     $("#humidity").text(main.humidity);
     $("#wind").text(wind.speed);
     $("#cityAndDate").text(
-      `${name} (${moment().format("dddd, MMMM, Do, YYYY")})`
+      `${name} (${moment().format("dddd MMMM Do, YYYY")})`
     );
+    const iconUrl = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
+
+    $("#weatherIcon").attr("src", iconUrl);
   }
 
   //access local storage to keeps that have been searched

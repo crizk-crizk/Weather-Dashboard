@@ -1,25 +1,31 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background: rgb(222, 218, 218);
 }
-content {
+.content {
     display: flex;
 
 }
 
-sidebar {
+.sidebar {
     display: flex;
     flex-direction: column;
 }
 
-main {
+.main {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    max-width: 700px;
 }
 
-forecast {
+.forecast {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 #searchedCities {
@@ -43,7 +49,7 @@ padding: 2px;
     background: rgb(10, 133, 10);
 }
 
-vertical {
+.vertical {
     width: 2px;
     background-color: black;
     margin: 0px 5px 0px 5px;
@@ -56,9 +62,16 @@ vertical {
     color: white;
 }
 
-current {
+.current {
     background-color: white;
     border: 1px solid lightslategray;
     padding: 10px;
 }
 
+.oneDayForecast {
+    border: 1px solid lightslategray;
+    background: white;
+    padding: 10px;
+    margin: 5px;
+
+}
