@@ -1,77 +1,103 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    background: rgb(222, 218, 218);
-}
-.content {
-    display: flex;
-
+  background: rgb(222, 218, 218);
+  display: flex;
+  flex-direction: column;
 }
 
-.sidebar {
-    display: flex;
-    flex-direction: column;
-}
-
-.main {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    max-width: 700px;
-}
-
-.forecast {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-#searchedCities {
-    padding: 10px;
-}
-
-#searchBtn {
-margin-top: 5px;
-padding: 2px;
-}
-
-.cityChoice {
-    text-align: center;
-    background-color: rgb(245, 241, 241);
-    border: 2px solid black;
-    margin-top: 2px;
-}
-
-.cityChoice:hover {
-    color: white;
-    background: rgb(10, 133, 10);
+.mainTitle {
+  background: rgb(96, 94, 94);
+  color: aliceblue;
+  text-align: center;
+  padding: 5px;
 }
 
 .vertical {
-    width: 2px;
-    background-color: black;
-    margin: 0px 5px 0px 5px;
-    height: 100%;
+  margin: 5px;
+}
+
+.content {
+  display: flex;
+  margin: auto;
+  
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 700px;
+  background: white;
+}
+
+.forecast {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#searchedCities {
+  padding: 5px;
+}
+
+#searchBtn {
+  margin-top: 5px;
+  padding: 2px;
+}
+
+.cityChoice {
+  text-align: center;
+  background-color: rgb(245, 241, 241);
+  border: 2px solid black;
+  margin-top: 2px;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.cityChoice:hover {
+  color: white;
+  background: rgb(10, 133, 10);
 }
 
 #uvi {
-    font-weight: bold;
-    padding: 2px;
-    color: white;
+  font-weight: bold;
+  padding: 2px;
+  color: white;
 }
 
 .current {
-    background-color: white;
-    border: 1px solid lightslategray;
-    padding: 10px;
+  background-color: rgb(190, 231, 237);
+  border: 1px solid lightslategray;
+  padding: 10px;
+  margin: 10px;
 }
 
 .oneDayForecast {
-    border: 1px solid lightslategray;
-    background: white;
-    padding: 10px;
-    margin: 5px;
+  border: 1px solid lightslategray;
+  background: rgb(190, 231, 237);
+  padding: 10px;
+}
 
+.fiveDayTitle {
+  margin-inline-start: 10px;
+  margin-block-end: 0.4em;
+  display: flex;
+  color: rgb(10, 133, 10);
+  font-weight: bolder;
+}
+
+@media only screen and (max-width: 50em) {
+    .content {
+        display: block;
+    }
 }

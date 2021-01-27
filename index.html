@@ -4,39 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   </head>
   <body>
-    <div class="content">
-      <div class="sidebar">
-        <div>Type a City</div>
-        <input class="inputCity" type="text" />
-        <button id="searchBtn">Search</button>
-        <div id="searchedCities"></div>
-      </div>
-
-      <div class="vertical"></div>
-
-      <!-- Current Weather -->
-      <div class="main">
-        <div class="current">
-          <h2 id="cityAndDate"></h2>
-          <img id="weatherIcon" src="" alt="Weather Icon">
-          <div>Temperature: <span id="temp"></span></div>
-          <div>Humidity: <span id="humidity"></span></div>
-          <div>Wind Speed: <span id="wind"></span></div>
-          <div>UV Index: <span id="uvi"></span></div>
+    <h1 class="mainTitle">Weather Dashboard</h1>
+    <!-- Sidebar -->
+    
+      <div class="content">
+        <div class="sidebar">
+          <div>Type a City</div>
+          <input class="inputCity" type="text" />
+          <button id="searchBtn">Search</button>
+          <div id="searchedCities"></div>
         </div>
 
-      <!-- five day forecast -->
-        <div class="forecast">
-          
-        </div>
+        <div class="vertical"></div>
 
+        <!-- Current Weather -->
+        <div class="main">
+          <div class="current">
+            <h2 id="cityAndDate"></h2>
+            <img id="weatherIcon" src="" alt="Weather Icon" />
+            <div>Temperature: <span id="temp"></span></div>
+            <div>Humidity: <span id="humidity"></span></div>
+            <div>Wind Speed: <span id="wind"></span></div>
+            <div>UV Index: <span id="uvi"></span></div>
+          </div>
+
+          <!-- five day forecast -->
+          <h2 class="fiveDayTitle">5-Day Forecast:</h2>
+          <div class="forecast"></div>
+        </div>
       </div>
-    </div>
+    
     <script src="script.js"></script>
   </body>
 </html>
