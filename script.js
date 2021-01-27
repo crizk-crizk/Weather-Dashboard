@@ -7,7 +7,7 @@ $(document).ready(function () {
     //ajax call Current temperature
     $.ajax({
       url:
-        "http://api.openweathermap.org/data/2.5/weather?q=" +
+        "https://api.openweathermap.org/data/2.5/weather?q=" +
         city +
         "&units=imperial&appid=05c2a7d4eefaaf927737607c9fd27a6c",
       method: "GET",
@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     //AJAX request for 5-day forecast
     $.ajax({
-      url: `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=05c2a7d4eefaaf927737607c9fd27a6c`,
+      url: `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=05c2a7d4eefaaf927737607c9fd27a6c`,
       method: "GET",
       crossDomain: true,
     }).then(function (response) {
@@ -42,7 +42,7 @@ $(document).ready(function () {
   //AJAX request for UV index (callback is a buzz word it's a variable name of a parameter )
   function fetchAndDisplayUVindex(lat, lon) {
     $.ajax({
-      url: `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=05c2a7d4eefaaf927737607c9fd27a6c`,
+      url: `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=05c2a7d4eefaaf927737607c9fd27a6c`,
       method: "GET",
       crossDomain: true,
     }).then(function (response) {
@@ -61,7 +61,7 @@ $(document).ready(function () {
     forecast.empty();
     noonWeather.forEach((day) => {
       const div = $('<div class="oneDayForecast"/>');
-      const iconUrl = `http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
+      const iconUrl = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
 
       div.append(`<h2>${new Date(day.dt_txt).toLocaleDateString()}</h2>`);
       div.append(`<img src="${iconUrl}">`);
@@ -103,7 +103,7 @@ $(document).ready(function () {
     $("#cityAndDate").text(
       `${name} (${moment().format("dddd MMMM Do, YYYY")})`
     );
-    const iconUrl = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
+    const iconUrl = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
 
     $("#weatherIcon").attr("src", iconUrl);
   }
