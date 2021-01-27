@@ -7,17 +7,6 @@
 * The color represention of the UV index conditions have the following meaning: green: low, orange: medium, red: high, and violet:very high.
 
 
-whether the conditions are favorable, moderate, or severe
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
-WHEN I open the weather dashboard
-THEN I am presented with the last searched city forecast
-```
-
-The following image demonstrates the application functionality:
-
 ![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
 
 ## Review
