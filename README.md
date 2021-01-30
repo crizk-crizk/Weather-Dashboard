@@ -7,9 +7,9 @@
 - The color represention of the UV index conditions have the following meaning: green: low, orange: medium, red: high, and violet:very high.
 
 ## Links  
-    [repo](https://github.com/crizk-crizk/Weather-Dashboard)
+[repo](https://github.com/crizk-crizk/Weather-Dashboard)
  
-    [livelink](https://crizk-crizk.github.io/Weather-Dashboard/)
+[livelink](https://crizk-crizk.github.io/Weather-Dashboard/)
 
 ## Screenshots
 ![](./images/weather-dash1.png)
