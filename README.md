@@ -6,12 +6,10 @@
 - Although the dasboard is concise, it provides the temperature in Fahrenheit, date, humidity, wind speed, color coded UV index, and graphic representations for both, the current weather and 5-day forecast displays.
 - The color represention of the UV index conditions have the following meaning: green: low, orange: medium, red: high, and violet:very high.
 
-## Links 
-### Repo:  
-    https://github.com/crizk-crizk/Weather-Dashboard
-
-### Live Link: 
-    https://crizk-crizk.github.io/Weather-Dashboard/
+## Links  
+    [repo](https://github.com/crizk-crizk/Weather-Dashboard)
+ 
+    [livelink](https://crizk-crizk.github.io/Weather-Dashboard/)
 
 ## Screenshots
 ![](./images/weather-dash1.png)
